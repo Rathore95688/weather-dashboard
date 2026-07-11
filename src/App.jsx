@@ -12,6 +12,7 @@ import useWeather from "./hooks/useWeather";
 import { getWeatherBackground } from "./utils/weatherBackground";
 import EmptyState from "./components/EmptyState";
 import AnimatedBackground from "./components/AnimatedBackground";
+import Loader from "./components/Loader";
 
 function App() {
   const {
@@ -132,11 +133,7 @@ function App() {
           />
 
           {/* Loading */}
-          {loading && (
-            <div className="mt-8 rounded-2xl border border-sky-500/30 bg-sky-500/10 p-5 text-center text-sky-300">
-              Loading weather...
-            </div>
-          )}
+          {loading && <Loader />}
 
           {/* Error */}
           {error && (
@@ -146,16 +143,17 @@ function App() {
           )}
 
           {/* Weather Sections */}
-          {weather ? (
-  <>
-    <WeatherCard weather={weather} />
-    <WeatherDetails weather={weather} />
-    <Forecast forecast={forecast} />
-    <AirQuality airQuality={airQuality} />
-  </>
-) : (
-  <EmptyState />
-)}
+          {!loading &&
+  (weather ? (
+    <>
+      <WeatherCard weather={weather} />
+      <WeatherDetails weather={weather} />
+      <Forecast forecast={forecast} />
+      <AirQuality airQuality={airQuality} />
+    </>
+  ) : (
+    <EmptyState />
+  ))}
         </main>
       </div>
     </div>
