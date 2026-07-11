@@ -11,6 +11,7 @@ import RecentSearches from "./components/RecentSearches";
 import useWeather from "./hooks/useWeather";
 import { getWeatherBackground } from "./utils/weatherBackground";
 import EmptyState from "./components/EmptyState";
+import AnimatedBackground from "./components/AnimatedBackground";
 
 function App() {
   const {
@@ -108,6 +109,7 @@ function App() {
     <div
       className={`min-h-screen transition-all duration-700 ${background}`}
     >
+      <AnimatedBackground weatherType={weatherType} />
       <div className="min-h-screen bg-black/30">
         <Navbar weather={weather} />
 
