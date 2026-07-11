@@ -1,4 +1,5 @@
 import { CloudSun } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   return (
@@ -21,10 +22,10 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Theme Button (Temporary) */}
-        <button className="rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/20">
-          🌙
-        </button>
+        {/* Theme Toggle */}
+        <div className="flex items-center">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
