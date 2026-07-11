@@ -3,6 +3,9 @@ import {
   getCurrentWeather,
   getForecast,
   getAirQuality,
+  getCurrentWeatherByCoords,
+  getForecastByCoords,
+  getAirQualityByCoords,
 } from "../services/weatherApi";
 
 const useWeather = () => {
@@ -13,31 +16,52 @@ const useWeather = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Search Weather by City
   const searchWeather = async (city) => {
+    if (!city.trim()) return;
+
     try {
       setLoading(true);
       setError("");
 
-      const currentData = await getCurrentWeather(city);
+      const weatherData = await getCurrentWeather(city);
 
       const forecastData = await getForecast(city);
 
       const airData = await getAirQuality(
-        currentData.coord.lat,
-        currentData.coord.lon
+        weatherData.coord.lat,
+        weatherData.coord.lon
       );
 
-      setWeather(currentData);
+      setWeather(weatherData);
       setForecast(forecastData);
       setAirQuality(airData);
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Something went wrong."
-      );
+      console.error(err);
+      setError("City not found. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      setWeather(null);
-      setForecast(null);
-      setAirQuality(null);
+  // Search Weather by Current Location
+  const fetchByLocation = async (lat, lon) => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const weatherData = await getCurrentWeatherByCoords(lat, lon);
+
+      const forecastData = await getForecastByCoords(lat, lon);
+
+      const airData = await getAirQualityByCoords(lat, lon);
+
+      setWeather(weatherData);
+      setForecast(forecastData);
+      setAirQuality(airData);
+    } catch (err) {
+      console.error(err);
+      setError("Unable to fetch weather for your location.");
     } finally {
       setLoading(false);
     }
@@ -50,6 +74,7 @@ const useWeather = () => {
     loading,
     error,
     searchWeather,
+    fetchByLocation,
   };
 };
 

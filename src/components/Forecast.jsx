@@ -1,25 +1,32 @@
+import { motion } from "framer-motion";
 import ForecastCard from "./ForecastCard";
 
 const Forecast = ({ forecast }) => {
   if (!forecast) return null;
 
-  const dailyForecast = forecast.list.filter((_, index) => index % 8 === 0);
+  const dailyForecast = forecast.list.filter((item) =>
+    item.dt_txt.includes("12:00:00")
+  );
 
   return (
-    <section className="mt-10">
-      <h2 className="mb-6 text-2xl font-bold text-white">
+    <motion.section
+      initial={{ opacity: 0, y: 25 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="mt-10"
+    >
+      <h2 className="mb-6 text-3xl font-bold text-white">
         5-Day Forecast
       </h2>
 
-      <div className="flex gap-5 overflow-x-auto pb-3">
-        {dailyForecast.map((item) => (
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        {dailyForecast.slice(0, 5).map((day) => (
           <ForecastCard
-            key={item.dt}
-            item={item}
+            key={day.dt}
+            day={day}
           />
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

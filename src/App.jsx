@@ -25,19 +25,17 @@ const {
 const background = getWeatherBackground(weatherType);
 
   return (
-    <div
-      className={`
-      min-h-screen
-      transition-all
-      duration-700
-      ${background}
-      `}
-    >
+    <div className={`relative min-h-screen overflow-hidden ${background} transition-all duration-700`}>
+  {/* Background Blur */}
+  <div className="absolute inset-0 backdrop-blur-3xl bg-black/20"></div>
+
+  {/* Content */}
+  <div className="relative z-10 min-h-screen">
       <Navbar />
 
-      <main className="mx-auto max-w-7xl px-6 py-10">
+      <main className="mx-auto max-w-7xl px-6 py-6">
         {/* Hero Section */}
-        <section className="mb-10">
+        <section className="mb-6">
           <p className="font-medium text-blue-400">
             Good Morning 👋
           </p>
@@ -77,6 +75,7 @@ const background = getWeatherBackground(weatherType);
         <Forecast forecast={forecast} />
         <AirQuality airQuality={airQuality} />
       </main>
+    </div>
     </div>
   );
 }

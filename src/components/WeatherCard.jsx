@@ -15,89 +15,100 @@ const WeatherCard = ({ weather }) => {
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4 }}
       className="
-        mt-10
+        mt-8
+        overflow-hidden
         rounded-3xl
         border
-        border-white/10
-        bg-white/10
-        p-8
-        backdrop-blur-2xl
-        shadow-xl
+        border-slate-700/70
+        bg-slate-900/85
+        shadow-2xl
       "
     >
-      {/* Top Section */}
-      <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+      {/* Header */}
+      <div className="flex flex-col justify-between gap-8 p-8 lg:flex-row lg:items-center">
         {/* Left */}
         <div>
-          <div className="flex items-center gap-2 text-slate-300">
+          <div className="flex items-center gap-2 text-slate-400">
             <MapPin size={18} />
 
-            <span>
+            <span className="text-lg">
               {weather.name}, {weather.sys.country}
             </span>
           </div>
 
-          <h2 className="mt-4 text-7xl font-bold text-white">
+          <h1 className="mt-4 text-6xl font-bold text-white md:text-7xl">
             {Math.round(weather.main.temp)}°
-          </h2>
+          </h1>
 
           <p className="mt-3 text-xl capitalize text-slate-300">
             {weather.weather[0].description}
           </p>
         </div>
 
-        {/* Weather Icon */}
-        <img
-          src={iconUrl}
-          alt="Weather Icon"
-          className="h-36 w-36"
+        {/* Right */}
+        <div className="flex justify-center">
+          <img
+            src={iconUrl}
+            alt="Weather Icon"
+            className="h-40 w-40"
+          />
+        </div>
+      </div>
+
+      {/* Bottom Stats */}
+      <div className="grid grid-cols-2 gap-px bg-slate-700/60 lg:grid-cols-4">
+        <StatCard
+          icon={<Thermometer size={22} />}
+          title="Feels Like"
+          value={`${Math.round(weather.main.feels_like)}°C`}
+          color="text-orange-400"
+        />
+
+        <StatCard
+          icon={<Droplets size={22} />}
+          title="Humidity"
+          value={`${weather.main.humidity}%`}
+          color="text-sky-400"
+        />
+
+        <StatCard
+          icon={<Wind size={22} />}
+          title="Wind Speed"
+          value={`${weather.wind.speed} m/s`}
+          color="text-cyan-400"
+        />
+
+        <StatCard
+          icon={<Gauge size={22} />}
+          title="Pressure"
+          value={`${weather.main.pressure} hPa`}
+          color="text-green-400"
         />
       </div>
+    </motion.section>
+  );
+};
 
-      {/* Details Grid */}
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-2xl bg-white/5 p-5">
-          <Thermometer className="mb-3 text-orange-400" />
-          <p className="text-slate-400">Feels Like</p>
-
-          <h3 className="mt-2 text-2xl font-semibold text-white">
-            {Math.round(weather.main.feels_like)}°C
-          </h3>
-        </div>
-
-        <div className="rounded-2xl bg-white/5 p-5">
-          <Droplets className="mb-3 text-blue-400" />
-          <p className="text-slate-400">Humidity</p>
-
-          <h3 className="mt-2 text-2xl font-semibold text-white">
-            {weather.main.humidity}%
-          </h3>
-        </div>
-
-        <div className="rounded-2xl bg-white/5 p-5">
-          <Wind className="mb-3 text-cyan-400" />
-          <p className="text-slate-400">Wind Speed</p>
-
-          <h3 className="mt-2 text-2xl font-semibold text-white">
-            {weather.wind.speed} m/s
-          </h3>
-        </div>
-
-        <div className="rounded-2xl bg-white/5 p-5">
-          <Gauge className="mb-3 text-green-400" />
-          <p className="text-slate-400">Pressure</p>
-
-          <h3 className="mt-2 text-2xl font-semibold text-white">
-            {weather.main.pressure} hPa
-          </h3>
-        </div>
+const StatCard = ({ icon, title, value, color }) => {
+  return (
+    <div className="bg-slate-900 p-6 transition hover:bg-slate-800">
+      <div className={`${color} mb-4`}>
+        {icon}
       </div>
-    </motion.div>
+
+      <p className="text-sm text-slate-400">
+        {title}
+      </p>
+
+      <h3 className="mt-2 text-2xl font-bold text-white">
+        {value}
+      </h3>
+    </div>
   );
 };
 
