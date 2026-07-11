@@ -5,6 +5,7 @@ import WeatherCard from "./components/WeatherCard";
 import WeatherDetails from "./components/WeatherDetails";
 import Forecast from "./components/Forecast";
 import AirQuality from "./components/AirQuality";
+import { getWeatherBackground } from "./utils/weatherBackground";
 function App() {
 const {
   weather,
@@ -19,17 +20,18 @@ const {
     searchWeather(city);
   };
 
+  const weatherType = weather?.weather?.[0]?.main;
+
+const background = getWeatherBackground(weatherType);
+
   return (
     <div
-      className="
-        min-h-screen
-        bg-gradient-to-br
-        from-slate-950
-        via-slate-900
-        to-blue-950
-        transition-all
-        duration-500
-      "
+      className={`
+      min-h-screen
+      transition-all
+      duration-700
+      ${background}
+      `}
     >
       <Navbar />
 
