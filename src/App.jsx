@@ -4,10 +4,12 @@ import useWeather from "./hooks/useWeather";
 import WeatherCard from "./components/WeatherCard";
 import WeatherDetails from "./components/WeatherDetails";
 import Forecast from "./components/Forecast";
+import AirQuality from "./components/AirQuality";
 function App() {
- const {
+const {
   weather,
   forecast,
+  airQuality,
   loading,
   error,
   searchWeather,
@@ -71,6 +73,7 @@ function App() {
         <WeatherCard weather={weather} />
         <WeatherDetails weather={weather} />
         <Forecast forecast={forecast} />
+        <AirQuality airQuality={airQuality} />
       </main>
     </div>
   );
