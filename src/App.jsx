@@ -3,14 +3,15 @@ import SearchBar from "./components/SearchBar";
 import useWeather from "./hooks/useWeather";
 import WeatherCard from "./components/WeatherCard";
 import WeatherDetails from "./components/WeatherDetails";
-
+import Forecast from "./components/Forecast";
 function App() {
-  const {
-    weather,
-    loading,
-    error,
-    searchWeather,
-  } = useWeather();
+ const {
+  weather,
+  forecast,
+  loading,
+  error,
+  searchWeather,
+} = useWeather();
 
   const handleSearch = (city) => {
     searchWeather(city);
@@ -69,6 +70,7 @@ function App() {
 
         <WeatherCard weather={weather} />
         <WeatherDetails weather={weather} />
+        <Forecast forecast={forecast} />
       </main>
     </div>
   );
