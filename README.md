@@ -4,15 +4,6 @@ A modern, responsive, and feature-rich Weather Dashboard built with **React**, *
 
 🔗 **Live Demo:**https://skycast-by-harsh.vercel.app
 
----
-
-## 📸 Preview
-
-> Add screenshots of your application here.
-
-| Home Page | Forecast | Air Quality |
-|-----------|-----------|-------------|
-| ![Home](./screenshots/home.png) | ![Forecast](./screenshots/forecast.png) | ![AQI](./screenshots/aqi.png) |
 
 ---
 
