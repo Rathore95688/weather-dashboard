@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import useWeather from "./hooks/useWeather";
-
+import WeatherCard from "./components/WeatherCard";
 function App() {
   const {
     weather,
@@ -65,52 +65,7 @@ function App() {
           </div>
         )}
 
-        {/* Weather Preview */}
-        {weather && (
-          <section className="mt-8 rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-xl">
-            <h2 className="text-3xl font-bold text-white">
-              {weather.name}, {weather.sys.country}
-            </h2>
-
-            <p className="mt-6 text-6xl font-bold text-white">
-              {Math.round(weather.main.temp)}°C
-            </p>
-
-            <p className="mt-2 text-xl capitalize text-slate-300">
-              {weather.weather[0].description}
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-2xl bg-white/5 p-4">
-                <p className="text-slate-400">Feels Like</p>
-                <p className="mt-2 text-2xl font-semibold text-white">
-                  {Math.round(weather.main.feels_like)}°C
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-white/5 p-4">
-                <p className="text-slate-400">Humidity</p>
-                <p className="mt-2 text-2xl font-semibold text-white">
-                  {weather.main.humidity}%
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-white/5 p-4">
-                <p className="text-slate-400">Wind Speed</p>
-                <p className="mt-2 text-2xl font-semibold text-white">
-                  {weather.wind.speed} m/s
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-white/5 p-4">
-                <p className="text-slate-400">Pressure</p>
-                <p className="mt-2 text-2xl font-semibold text-white">
-                  {weather.main.pressure} hPa
-                </p>
-              </div>
-            </div>
-          </section>
-        )}
+        <WeatherCard weather={weather} />
       </main>
     </div>
   );
