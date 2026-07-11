@@ -2,6 +2,8 @@ import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import useWeather from "./hooks/useWeather";
 import WeatherCard from "./components/WeatherCard";
+import WeatherDetails from "./components/WeatherDetails";
+
 function App() {
   const {
     weather,
@@ -66,6 +68,7 @@ function App() {
         )}
 
         <WeatherCard weather={weather} />
+        <WeatherDetails weather={weather} />
       </main>
     </div>
   );
