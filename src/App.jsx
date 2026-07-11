@@ -6,6 +6,7 @@ import WeatherDetails from "./components/WeatherDetails";
 import Forecast from "./components/Forecast";
 import AirQuality from "./components/AirQuality";
 import { getWeatherBackground } from "./utils/weatherBackground";
+import Hero from "./components/Hero";
 function App() {
 const {
   weather,
@@ -51,24 +52,11 @@ const background = getWeatherBackground(weatherType);
 
   {/* Content */}
   <div className="relative z-10 min-h-screen">
-      <Navbar />
+      <Navbar weather={weather} />
 
       <main className="mx-auto max-w-7xl px-6 py-6">
         {/* Hero Section */}
-        <section className="mb-6">
-          <p className="font-medium text-blue-400">
-            Good Morning 👋
-          </p>
-
-          <h1 className="mt-2 text-5xl font-extrabold text-white">
-            SkyCast
-          </h1>
-
-          <p className="mt-4 max-w-2xl text-lg text-slate-400">
-            Get accurate weather forecasts, air quality insights, and
-            beautiful visualizations with a modern dashboard.
-          </p>
-        </section>
+        <Hero weather={weather} />
 
         {/* Search */}
         <SearchBar
