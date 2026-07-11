@@ -2,7 +2,7 @@
 
 A modern, responsive, and feature-rich Weather Dashboard built with **React**, **Vite**, **Tailwind CSS**, and the **OpenWeather API**. SkyCast delivers real-time weather information, 5-day forecasts, air quality insights, and a beautiful glassmorphism UI with dynamic weather backgrounds.
 
-🔗 **Live Demo:** https://weather-dashboard-gold-eta.vercel.app/
+🔗 **Live Demo:**https://skycast-by-harsh.vercel.app
 
 ---
 
