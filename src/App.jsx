@@ -10,6 +10,7 @@ import AirQuality from "./components/AirQuality";
 import RecentSearches from "./components/RecentSearches";
 import useWeather from "./hooks/useWeather";
 import { getWeatherBackground } from "./utils/weatherBackground";
+import EmptyState from "./components/EmptyState";
 
 function App() {
   const {
@@ -143,13 +144,16 @@ function App() {
           )}
 
           {/* Weather Sections */}
-          <WeatherCard weather={weather} />
-
-          <WeatherDetails weather={weather} />
-
-          <Forecast forecast={forecast} />
-
-          <AirQuality airQuality={airQuality} />
+          {weather ? (
+  <>
+    <WeatherCard weather={weather} />
+    <WeatherDetails weather={weather} />
+    <Forecast forecast={forecast} />
+    <AirQuality airQuality={airQuality} />
+  </>
+) : (
+  <EmptyState />
+)}
         </main>
       </div>
     </div>
