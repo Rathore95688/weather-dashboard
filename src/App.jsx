@@ -14,11 +14,31 @@ const {
   loading,
   error,
   searchWeather,
+  fetchByLocation,
 } = useWeather();
 
   const handleSearch = (city) => {
     searchWeather(city);
   };
+
+  const handleCurrentLocation = () => {
+  if (!navigator.geolocation) {
+    alert("Geolocation is not supported by your browser.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      fetchByLocation(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+    },
+    () => {
+      alert("Unable to access your location.");
+    }
+  );
+};
 
   const weatherType = weather?.weather?.[0]?.main;
 
@@ -52,9 +72,10 @@ const background = getWeatherBackground(weatherType);
 
         {/* Search */}
         <SearchBar
-          onSearch={handleSearch}
-          loading={loading}
-        />
+  onSearch={handleSearch}
+  onCurrentLocation={handleCurrentLocation}
+  loading={loading}
+/>
 
         {/* Loading */}
         {loading && (

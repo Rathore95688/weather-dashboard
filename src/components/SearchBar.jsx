@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 
-const SearchBar = ({ onSearch, loading }) => {
+const SearchBar = ({
+  onSearch,
+  onCurrentLocation,
+  loading,
+}) => {
   const [city, setCity] = useState("");
 
   const handleSubmit = (e) => {
@@ -67,6 +71,29 @@ const SearchBar = ({ onSearch, loading }) => {
       >
         {loading ? "Searching..." : "Search"}
       </button>
+
+      <button
+  type="button"
+  onClick={onCurrentLocation}
+  className="
+    flex
+    items-center
+    gap-2
+    rounded-2xl
+    border
+    border-slate-700
+    bg-slate-900/80
+    px-5
+    py-3
+    text-white
+    transition
+    duration-300
+    hover:border-sky-500
+    hover:bg-slate-800
+  "
+>
+  📍 My Location
+</button>
     </form>
   );
 };
